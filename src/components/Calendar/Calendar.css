@@ -12,7 +12,7 @@
     padding-bottom: 20px;
 }
 
-.months-menu {
+.date-menu {
     width: inherit;
     padding: 0;
     margin: 0;
@@ -26,7 +26,17 @@
     transition: 0.5s;
 }
 
-.months-menu_visible {
+.date-menu_year {
+    
+}
+
+.date-menu_visible-month {
+    visibility: visible;
+    transition: 0.5s;
+    opacity: 1;
+}
+
+.date-menu_visible-year {
     visibility: visible;
     transition: 0.5s;
     opacity: 1;

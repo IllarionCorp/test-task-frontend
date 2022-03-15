@@ -7,9 +7,7 @@ import ruMonths from "../../utils/months";
 import moment from "moment";
 import { Route, Routes } from "react-router-dom";
 
-moment.locale('ru');
 const momentLocal = moment.updateLocale('ru', {week: {dow: 1}});
-console.log(moment())
 
 export default function App() {
     const enMonths = momentLocal.monthsShort();
@@ -19,9 +17,15 @@ export default function App() {
         <>
             <Header />
             <Routes>
-                <Route path="/" element={
-                    <Main weekDays={weekDays} months={months} month={momentLocal.months()}/>
-                } />
+                {
+                    enMonths.map((month, id) => {
+                        return (
+                            <Route key={id} path={`/${month}`}  element={
+                                <Main weekDays={weekDays} months={months} monthId={id}/>
+                            } />
+                        );
+                    })
+                }
             </Routes>
         </>
     );
