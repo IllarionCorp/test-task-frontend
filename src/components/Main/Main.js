@@ -5,7 +5,7 @@ import './Main.css';
 export default function Main(props) {
     return (
         <main className='main'>
-            <Calendar weekDays={props.weekDays} months={props.months} />
+            <Calendar weekDays={props.weekDays} months={props.months} month={props.month} />
             <Toolbar />
         </main>
     );
