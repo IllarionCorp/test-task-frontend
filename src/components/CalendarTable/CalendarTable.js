@@ -1,16 +1,21 @@
+import React from 'react';
 import CalendarCell from '../CalendarCell/CalendarCell';
 import './CalendarTable.css';
 
 export default function CalendarTable(props) {
-    const startDay = props.startDay.clone().subtract();
+    const startDay = props.startDay.clone().startOf('month').startOf('week').subtract();
     const daysArr = [...Array(42)].map(() => startDay.add(1, 'day').clone());
-    console.log(daysArr); 
+    const isSelectedMonth =(daySelect) => props.startDay.isSame(daySelect, 'month');
+
+    
+    console.log(isSelectedMonth); 
     return (
         <div className='calendar-table'>
             {daysArr.map((day, id) => {
+                
                 return (
                     <div key={id}>
-                        <CalendarCell data={day.format('D')} />
+                        <CalendarCell data={day.format('D')} dayId={day.day()} isSelectedMonth={() => isSelectedMonth(day)} />
                     </div>
                 );        
             })}

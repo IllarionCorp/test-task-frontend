@@ -5,19 +5,24 @@ import './App.css';
 import weekDays from '../../utils/week-days';
 import ruMonths from "../../utils/months";
 import moment from "moment";
-import { Route, Routes } from "react-router-dom";
 
-const momentLocal = moment.updateLocale('ru', {week: {dow: 1}});
-
+moment.updateLocale({week: {dow: 1}});
+console.log(moment())
 export default function App() {
-    const enMonths = momentLocal.monthsShort();
-    const months = {en: enMonths, ru: ruMonths};
-    const startDay = moment().startOf('month').startOf('week');
-    console.log(startDay)
+    const months = ruMonths;
+    const [startDay, setStartDay] = React.useState(moment());
+    const enMonths = [...Array(12)].map((_, i) => moment().month(i).format('MMMM'));
+
+    function switchDate(year, month) {
+        setStartDay(moment(`${year}-${month}`));
+    }
+
+    console.log(moment())
+    
     return (
         <>
             <Header />
-            <Main startDay={startDay} months={months} />
+            <Main startDay={startDay} months={enMonths} switchDate={switchDate} />
         </>
     );
 }

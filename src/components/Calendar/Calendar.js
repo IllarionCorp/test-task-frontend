@@ -1,16 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import CalendarTable from '../CalendarTable/CalendarTable';
 import './Calendar.css';
 
 
 
 export default function Calendar(props) {
-    const months = props.months;
-    const ruMonthsArr = months.ru
-    const enMonthsArr = months.en;
-    const monthActive = ruMonthsArr.find((el, i) => i === props.monthId)
-
+    const startDay = props.startDay.clone();
+    const enMonths = props.months;
+    const [yearArr, setYearArr] = React.useState([]);
+    console.log(startDay)
+    
     function visibleCheker(e) {
         const month = document.querySelector('#month');
         const year =  document.querySelector('#year');
@@ -20,6 +19,7 @@ export default function Calendar(props) {
         }
 
         if (e.target === document.querySelector('.calendar__year-active')) {
+            yearFill()
             year.classList.add('date-menu_visible');
         }
     }
@@ -33,18 +33,39 @@ export default function Calendar(props) {
     }
 
 
+
+   function handleSwitchDate(e) {
+        
+       console.log(e.target.textContent)
+       if (e.target.className === 'calendar__month') {
+           props.switchDate(document.querySelector('.calendar__year-active').textContent.substring(0, 4), e.target.textContent)
+       }
+
+       if (e.target.className === 'calendar__year') {
+            props.switchDate(e.target.textContent, props.month)
+    }
+   }
+
+   function yearFill() {
+    const arr = []
+    for (let i = 0; i < 6; i++ ) {
+        arr[i] = startDay.add(1, 'year').format('YYYY');  
+    }
+    setYearArr(arr);
+}
+
+
     return (
         <section className='calendar'>
             <nav className='calendar__nav'>
                 <h2 className="calendar__month-active" onMouseEnter={visibleCheker} onMouseLeave={setUnvisible}>
-                    {monthActive}
+                    {startDay.format('MMMM')}
                     <ul id='month' className={`date-menu`} >
                         {
-                                ruMonthsArr.map((month, id) => {
-                                    const enMonth = enMonthsArr.find((el, idEn) => idEn === id);
+                                enMonths.map((month, id) => {
                                     return (
                                         <div key={id}>
-                                            <Link to={`/${enMonth}`} className='calendar__month'>{month}</Link>
+                                            <a href='#' className='calendar__month' onClick={handleSwitchDate}>{month}</a>
                                         </div> 
                                     ); 
                                 })   
@@ -52,14 +73,13 @@ export default function Calendar(props) {
                     </ul> 
                 </h2>
                 <h2 className='calendar__year-active' onMouseEnter={visibleCheker} onMouseLeave={setUnvisible}>
-                    2022
+                    {startDay.format('YYYY') + ''}
                     <ul id='year' className={`date-menu`} >
                         {
-                                ruMonthsArr.map((month, id) => {
-                                    const enMonth = enMonthsArr.find((el, idEn) => idEn === id);
+                                yearArr.map((year, id) => {
                                     return (
                                         <div key={id}>
-                                            <Link to={`/${enMonth}`} className='calendar__'>{month}</Link>
+                                            <a  href='#' className='calendar__year' onClick={handleSwitchDate} >{year}</a>
                                         </div> 
                                     ); 
                                 })   
