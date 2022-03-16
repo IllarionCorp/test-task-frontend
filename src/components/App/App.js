@@ -12,21 +12,12 @@ const momentLocal = moment.updateLocale('ru', {week: {dow: 1}});
 export default function App() {
     const enMonths = momentLocal.monthsShort();
     const months = {en: enMonths, ru: ruMonths};
-
+    const startDay = moment().startOf('month').startOf('week');
+    console.log(startDay)
     return (
         <>
             <Header />
-            <Routes>
-                {
-                    enMonths.map((month, id) => {
-                        return (
-                            <Route key={id} path={`/${month}`}  element={
-                                <Main weekDays={weekDays} months={months} monthId={id}/>
-                            } />
-                        );
-                    })
-                }
-            </Routes>
+            <Main startDay={startDay} months={months} />
         </>
     );
 }

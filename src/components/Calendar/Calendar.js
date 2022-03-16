@@ -9,16 +9,36 @@ export default function Calendar(props) {
     const months = props.months;
     const ruMonthsArr = months.ru
     const enMonthsArr = months.en;
-    const [isVisible, setIsVisible] = React.useState(false);
     const monthActive = ruMonthsArr.find((el, i) => i === props.monthId)
+
+    function visibleCheker(e) {
+        const month = document.querySelector('#month');
+        const year =  document.querySelector('#year');
+        console.log(e.target.className)
+        if (e.target === document.querySelector('.calendar__month-active')) {
+            month.classList.add('date-menu_visible');
+        }
+
+        if (e.target === document.querySelector('.calendar__year-active')) {
+            year.classList.add('date-menu_visible');
+        }
+    }
+
+    function setUnvisible() {
+        const month = document.querySelector('#month');
+        const year =  document.querySelector('#year');
+
+        month.classList.remove('date-menu_visible');
+        year.classList.remove('date-menu_visible');
+    }
 
 
     return (
         <section className='calendar'>
             <nav className='calendar__nav'>
-                <h2 className="calendar__month-active" onMouseEnter={() => setIsVisible(true)} onMouseLeave={() => setIsVisible(false)}>
+                <h2 className="calendar__month-active" onMouseEnter={visibleCheker} onMouseLeave={setUnvisible}>
                     {monthActive}
-                    <ul className={`date-menu  ${isVisible ? 'date-menu_visible-month' : ''} date-menu_month`} >
+                    <ul id='month' className={`date-menu`} >
                         {
                                 ruMonthsArr.map((month, id) => {
                                     const enMonth = enMonthsArr.find((el, idEn) => idEn === id);
@@ -31,9 +51,9 @@ export default function Calendar(props) {
                         }      
                     </ul> 
                 </h2>
-                <h2 className='calendar__year-active' onMouseEnter={() => setIsVisible(true)} onMouseLeave={() => setIsVisible(false)}>
+                <h2 className='calendar__year-active' onMouseEnter={visibleCheker} onMouseLeave={setUnvisible}>
                     2022
-                    <ul className={`date-menu  ${isVisible ? 'date-menu_visible-year' : ''} date-menu_year`} >
+                    <ul id='year' className={`date-menu`} >
                         {
                                 ruMonthsArr.map((month, id) => {
                                     const enMonth = enMonthsArr.find((el, idEn) => idEn === id);
@@ -47,7 +67,7 @@ export default function Calendar(props) {
                     </ul> 
                 </h2>            
             </nav>
-            <CalendarTable weekDays={props.weekDays} />
+            <CalendarTable startDay={props.startDay} />
         </section>
     );
 }
