@@ -1,10 +1,11 @@
 import './Meeting.css';
 
-export default function Meeting() {
+export default function Meeting(props) {
+    console.log(props.meeting)
     return (
         <div className='meeting'>
-            <label className='meeting__name'>Встреча 1</label>
-            <p className='meeting__author'>Иванов С.В.</p>    
+            <p className='meeting__name'>{props.meeting.name}</p>
+            <p className='meeting__author'>{props.meeting.fio}</p>  
         </div>
     );
 }

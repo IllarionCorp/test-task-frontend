@@ -3,16 +3,14 @@ import CalendarTable from '../CalendarTable/CalendarTable';
 import './Calendar.css';
 
 
-
 export default function Calendar(props) {
     const startDay = props.startDay.clone();
     const enMonths = props.months;
     const [yearArr, setYearArr] = React.useState([]);
-    console.log(startDay)
     
     function visibleCheker(e) {
-        const month = document.querySelector('#month');
-        const year =  document.querySelector('#year');
+        const month = document.querySelector('#months');
+        const year =  document.querySelector('#years');
         console.log(e.target.className)
         if (e.target === document.querySelector('.calendar__month-active')) {
             month.classList.add('date-menu_visible');
@@ -25,8 +23,8 @@ export default function Calendar(props) {
     }
 
     function setUnvisible() {
-        const month = document.querySelector('#month');
-        const year =  document.querySelector('#year');
+        const month = document.querySelector('#months');
+        const year =  document.querySelector('#years');
 
         month.classList.remove('date-menu_visible');
         year.classList.remove('date-menu_visible');
@@ -37,22 +35,26 @@ export default function Calendar(props) {
    function handleSwitchDate(e) {
         
        console.log(e.target.textContent)
-       if (e.target.className === 'calendar__month') {
+       if (e.target.id === 'month') {
            props.switchDate(document.querySelector('.calendar__year-active').textContent.substring(0, 4), e.target.textContent)
        }
 
-       if (e.target.className === 'calendar__year') {
-            props.switchDate(e.target.textContent, props.month)
+       if (e.target.id === 'year') {
+            props.switchDate(e.target.textContent, document.querySelector('.calendar__month-active').textContent);
     }
+    setUnvisible()
    }
 
    function yearFill() {
-    const arr = []
-    for (let i = 0; i < 6; i++ ) {
-        arr[i] = startDay.add(1, 'year').format('YYYY');  
+    const startYear = startDay.clone().subtract(6, 'year');
+    const arr = [];
+
+    for (let i = 0; i < 12; i++ ) {
+         arr[i] = startYear.add(1, 'year').format('YYYY');
     }
     setYearArr(arr);
 }
+
 
 
     return (
@@ -60,12 +62,12 @@ export default function Calendar(props) {
             <nav className='calendar__nav'>
                 <h2 className="calendar__month-active" onMouseEnter={visibleCheker} onMouseLeave={setUnvisible}>
                     {startDay.format('MMMM')}
-                    <ul id='month' className={`date-menu`} >
+                    <ul id='months' className={`date-menu`} >
                         {
                                 enMonths.map((month, id) => {
                                     return (
                                         <div key={id}>
-                                            <a href='#' className='calendar__month' onClick={handleSwitchDate}>{month}</a>
+                                            <a id="month" href='#' className='date-menu__list' onClick={handleSwitchDate}>{month}</a>
                                         </div> 
                                     ); 
                                 })   
@@ -74,12 +76,12 @@ export default function Calendar(props) {
                 </h2>
                 <h2 className='calendar__year-active' onMouseEnter={visibleCheker} onMouseLeave={setUnvisible}>
                     {startDay.format('YYYY') + ''}
-                    <ul id='year' className={`date-menu`} >
+                    <ul id='years' className={`date-menu`} >
                         {
                                 yearArr.map((year, id) => {
                                     return (
                                         <div key={id}>
-                                            <a  href='#' className='calendar__year' onClick={handleSwitchDate} >{year}</a>
+                                            <a id="year" href='#' className='date-menu__list' onClick={handleSwitchDate} >{year}</a>
                                         </div> 
                                     ); 
                                 })   

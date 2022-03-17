@@ -1,0 +1,24 @@
+.meeting {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+.meeting__name {
+    margin: 0;
+    width: 100%;
+    max-width: 200px;
+    min-width: 100px;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: rgb(134, 236, 134);
+    cursor: pointer;
+}
+
+.meeting__author {
+    vertical-align: center;
+    margin: 0;
+    padding-top: 5px;;
+}

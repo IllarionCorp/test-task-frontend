@@ -2,27 +2,40 @@ import React, { useState } from "react";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import './App.css';
-import weekDays from '../../utils/week-days';
-import ruMonths from "../../utils/months";
 import moment from "moment";
+import AddPopup from "../AddPopup/AddPopup";
 
 moment.updateLocale({week: {dow: 1}});
-console.log(moment())
+
 export default function App() {
-    const months = ruMonths;
     const [startDay, setStartDay] = React.useState(moment());
     const enMonths = [...Array(12)].map((_, i) => moment().month(i).format('MMMM'));
+    const [isAddPopupOpen, seIsAddPopupOpen] = React.useState(false);
+    const [meetings, setMeetings] = React.useState([])
 
     function switchDate(year, month) {
         setStartDay(moment(`${year}-${month}`));
     }
 
-    console.log(moment())
+    function handleAddPopupClick() {
+        seIsAddPopupOpen(true)
+        console.log(meetings)
+    }
     
+    function closeAllPopups() {
+        seIsAddPopupOpen(false);
+    }
+
+    function hendleAddMeeting(meeting) {
+        setMeetings([meeting, ...meetings])
+        
+    }
+
     return (
         <>
+            <AddPopup isOpened={isAddPopupOpen} isClose={closeAllPopups} onAddMeeting={hendleAddMeeting} />
             <Header />
-            <Main startDay={startDay} months={enMonths} switchDate={switchDate} />
+            <Main startDay={startDay} months={enMonths} switchDate={switchDate} handleAddPopupClick={handleAddPopupClick} meetings={meetings}  />
         </>
     );
 }

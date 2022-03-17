@@ -1,0 +1,21 @@
+.inputs {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.container-form__input {
+    width: 100%;
+    margin-left: 40px;
+}
+
+.container-form__label {
+    width: 100px;
+}
+
+#description-input {
+    width: 100%;
+    resize: none;
+    
+    padding: 0;
+}

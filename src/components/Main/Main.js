@@ -7,8 +7,8 @@ export default function Main(props) {
     // const month = document.querySelector('.calendar__month-active');
     return (
         <main className='main'>
-            <Calendar startDay={props.startDay} months={props.months} switchDate={props.switchDate}  />
-            <Toolbar />
+            <Calendar startDay={props.startDay} months={props.months} switchDate={props.switchDate}   />
+            <Toolbar handleAddPopupClick={props.handleAddPopupClick} meetings={props.meetings} />
         </main>
     );
 }

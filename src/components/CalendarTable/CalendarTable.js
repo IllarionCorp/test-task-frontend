@@ -7,8 +7,6 @@ export default function CalendarTable(props) {
     const daysArr = [...Array(42)].map(() => startDay.add(1, 'day').clone());
     const isSelectedMonth =(daySelect) => props.startDay.isSame(daySelect, 'month');
 
-    
-    console.log(isSelectedMonth); 
     return (
         <div className='calendar-table'>
             {daysArr.map((day, id) => {
