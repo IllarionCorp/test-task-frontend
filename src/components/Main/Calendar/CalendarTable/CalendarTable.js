@@ -1,5 +1,5 @@
 import React from 'react';
-import CalendarCell from '../CalendarCell/CalendarCell';
+import CalendarCell from './CalendarCell/CalendarCell';
 import './CalendarTable.css';
 
 export default function CalendarTable(props) {

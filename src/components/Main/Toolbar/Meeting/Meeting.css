@@ -3,6 +3,7 @@
     flex-direction: row;
     justify-content: space-around;
     margin-bottom: 10px;
+    margin-top: 15px;
 }
 
 .meeting__name {
@@ -17,8 +18,16 @@
     cursor: pointer;
 }
 
+.meeting__name_active {
+    border: 2px solid black;
+}
+
 .meeting__author {
     vertical-align: center;
     margin: 0;
-    padding-top: 5px;;
+    padding-top: 5px;
+}
+
+.meeting__author_active {
+    font-weight: bold;
 }
