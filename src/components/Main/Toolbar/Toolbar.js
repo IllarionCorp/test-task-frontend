@@ -3,6 +3,7 @@ import Meeting from "./Meeting/Meeting";
 import "./Toolbar.css";
 
 export default function Toolbar(props) {
+
   return (
     <section className="toolbar">
       <div className="buttons">
@@ -23,7 +24,7 @@ export default function Toolbar(props) {
       </div>
       <div className="list-meetings">
         <h2 className="list-meetings__title">Список встреч</h2>
-        {props.meetings.sort(props.setMeetings).map((meeting, id) => {
+        {props.meetings.map((meeting, id) => {
           return (
             <Meeting
               key={id}

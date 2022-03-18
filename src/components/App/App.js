@@ -9,12 +9,18 @@ moment.updateLocale({ week: { dow: 1 } });
 
 export default function App() {
   const [startDay, setStartDay] = React.useState(moment());
+  const startActiveMonthQuery = startDay.clone().format('X');
+  const endActiveMonthQuery = startDay.clone().add(42, 'days').format('X');
+
+
+    const [i, setI] = React.useState('');
+
   const enMonths = [...Array(12)].map((_, i) =>
     moment().month(i).format("MMMM")
   );
   const [isAddPopupOpen, seIsAddPopupOpen] = React.useState(false);
   const [meetings, setMeetings] = React.useState([]);
-  const [isActive, setIsActive] = React.useState(false);
+
   function switchDate(year, month) {
     setStartDay(moment(`${year}-${month}`));
   }
@@ -32,11 +38,6 @@ export default function App() {
     setMeetings([meeting, ...meetings]);
   }
 
-  function handleDeleteMeeting(id) {
-    setMeetings(meetings.filter((c) => c.id !== id && c));
-  }
-
-  console.log(meetings.map((c, id) => id))
 
   return (
     <>
@@ -44,6 +45,8 @@ export default function App() {
         isOpened={isAddPopupOpen}
         isClose={closeAllPopups}
         onAddMeeting={hendleAddMeeting}
+        i={i}
+        setI={setI}
       />
       <Header />
       <Main
@@ -52,8 +55,6 @@ export default function App() {
         switchDate={switchDate}
         handleAddPopupClick={handleAddPopupClick}
         meetings={meetings}
-        handleDeleteMeeting={handleDeleteMeeting}
-        setMeetings={setMeetings}
       />
     </>
   );

@@ -16,7 +16,10 @@ export default function CalendarCell(props) {
 
     return (
         <div className={`calendar-cell${!props.isSelectedMonth() ? ' calendar-cell_blue' : ''}`}>
-            <h3 className={`calendar-cell__title${isWeekend ? ' calendar-cell__title_blue' : ''}`}>{props.data}</h3>   
+            <h3 className={`calendar-cell__title${isWeekend ? ' calendar-cell__title_blue' : ''}`}>{props.data}</h3>
+            <div className='events'>
+                <p className='events__event'>ВКС 1</p>
+            </div>   
         </div>
     );
 }

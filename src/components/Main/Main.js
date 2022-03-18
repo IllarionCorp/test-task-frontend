@@ -4,7 +4,7 @@ import "./Main.css";
 import React from "react";
 
 export default function Main(props) {
-
+    const meetings = props.meetings
     const [currentUnit, setCurrentUnit] = React.useState('');
 
   function dragStartHandler(e, id) {
@@ -23,13 +23,16 @@ export default function Main(props) {
   function dropHandler(e, id) {
     e.preventDefault();
     console.log(props.meetings)
-    props.meetings.map((c) => {
+    meetings.map(c => {
+        console.log(c);
         if (c.id === id) {
-            props.setMeetings([...c, currentUnit])
+            // props.setMeetings([...c, currentUnit])
+            
         }
 
         if (c.id === currentUnit) {
-            props.setMeetings([...c, id])
+            // props.setMeetings([...c, id])
+            console.log(c.id)
         }
     })
   }

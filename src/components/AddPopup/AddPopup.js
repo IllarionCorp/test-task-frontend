@@ -4,8 +4,8 @@ import './AddPopup.css';
 
 export default function AddPopup(props) {
     const [name, setName] = React.useState('');
-    const [fio, setFio] = React.useState('');
-    const [i, setI] = React.useState(0)
+    const [fio, setFio] = React.useState(0);
+   
 
     function handleNameChange(e) {
         setName(e.target.value);
@@ -15,20 +15,21 @@ export default function AddPopup(props) {
         setFio(e.target.value);
     }
 
+   
     function hadleSubmit(e) {
         e.preventDefault();
-
         
         props.onAddMeeting({
             name: name,
             fio: fio,
-            id: i
+            id: props.i 
         });
     }
 
     React.useEffect(() => {
         setName('')
         setFio('')
+        props.setI(props.i + 1)
     }, [props.isOpened])
 
     return (

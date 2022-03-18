@@ -12,9 +12,9 @@ export default function Meeting(props) {
     }
   }
 
-  React.useEffect(() => {
-    props.handleDeleteMeeting(props.id, isClick);
-  }, []);
+//   React.useEffect(() => {
+//     props.handleDeleteMeeting(props.id, isClick);
+//   }, []);
 
   console.log(props.id);
   return (
