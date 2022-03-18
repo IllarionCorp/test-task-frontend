@@ -2,13 +2,13 @@ import React from "react";
 import "./Meeting.css";
 
 export default function Meeting(props) {
-  const [isClick, setIsClick] = React.useState(false);
+
 
   function hendleMeetingClick() {
-    if (!isClick) {
-      setIsClick(true);
+    if (!props.isClick) {
+      props.setIsClick(true);
     } else {
-      setIsClick(false);
+      props.setIsClick(false);
     }
   }
 
@@ -18,9 +18,9 @@ export default function Meeting(props) {
 
   console.log(props.id);
   return (
-    <div className="meeting" onMouseDown={hendleMeetingClick}>
+    <div className="meeting" onClick={hendleMeetingClick}>
       <p
-        className={`meeting__name${isClick ? " meeting__name_active" : ""}`}
+        className={`meeting__name${props.isClick ? " meeting__name_active" : ""}`}
         draggable={true}
         onDragStart={(e) => props.dragStartHandler(e, props.meeting)}
         onDragLeave={(e) => props.dragEndHandler(e)}
@@ -31,7 +31,7 @@ export default function Meeting(props) {
         {props.meeting.name}
       </p>
       <p
-        className={`meeting__author${isClick ? " meeting__author_active" : ""}`}
+        className={`meeting__author${props.isClick ? " meeting__author_active" : ""}`}
       >
         {props.meeting.fio}
       </p>

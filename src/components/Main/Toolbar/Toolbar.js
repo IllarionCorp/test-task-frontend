@@ -3,6 +3,7 @@ import Meeting from "./Meeting/Meeting";
 import "./Toolbar.css";
 
 export default function Toolbar(props) {
+    
 
   return (
     <section className="toolbar">
@@ -37,6 +38,8 @@ export default function Toolbar(props) {
               dragEndHandler={props.dragEndHandler}
               dragOverHandler={props.dragOverHandler}
               dropHandler={props.dropHandler}
+              isClick={props.isClick}
+              setIsClick={props.setIsClick}
             />
           );
         })}

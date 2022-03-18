@@ -1,0 +1,18 @@
+.event {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    text-align: center;
+    margin: 5px  10px; 
+    background-color: greenyellow;
+}
+
+.event__title {
+    margin:0 auto 0 auto;
+    text-align: center;
+}
+
+.event__time {
+    margin: 0;
+
+}

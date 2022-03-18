@@ -1,5 +1,6 @@
 import React from 'react';
 import './CalendarCell.css';
+import EventInCalendar from './EventInCalendar/EventInCalendar';
 
 export default function CalendarCell(props) {
     const [isWeekend, setIsWeekend] = React.useState(false)
@@ -16,10 +17,16 @@ export default function CalendarCell(props) {
 
     return (
         <div className={`calendar-cell${!props.isSelectedMonth() ? ' calendar-cell_blue' : ''}`}>
-            <h3 className={`calendar-cell__title${isWeekend ? ' calendar-cell__title_blue' : ''}`}>{props.data}</h3>
+            <h3 className={`calendar-cell__title${isWeekend ? ' calendar-cell__title_blue' : ''}`}>{props.data}</h3>   
             <div className='events'>
-                <p className='events__event'>ВКС 1</p>
-            </div>   
+                {
+                    props.eventsList.map((event, id) => {
+                        return(
+                            <EventInCalendar key={id} event={event} eventId={id} />
+                        );
+                    })
+                }
+            </div>
         </div>
     );
 }

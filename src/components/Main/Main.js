@@ -4,15 +4,16 @@ import "./Main.css";
 import React from "react";
 
 export default function Main(props) {
-    const [meetings, setMeetings] = (props.meetings);
+    const [isClick, setIsClick] = React.useState(false);
     const [currentUnit, setCurrentUnit] = React.useState(null);
 
   function dragStartHandler(e, meeting) {
     setCurrentUnit(meeting)
+    setIsClick(true)
   }
 
   function dragEndHandler(e) {
-    e.target.style.background = 'rgb(134, 236, 134)';
+    e.target.style.background = 'rgb(134, 236, 134)'
   }
 
   function dragOverHandler(e) {
@@ -26,10 +27,13 @@ export default function Main(props) {
     props.setMeetings(props.meetings.map((c) => {
         console.log(c)
         if (c.id === meeting.id) {
+            e.target.style.background = 'rgb(134, 236, 134)';
           return {...c, id: currentUnit.id}
         }
 
         if (c.id === currentUnit.id) {
+            e.target.style.background = 'rgb(134, 236, 134)';
+            
           return  {...c, id: meeting.id}
         }
     }))
@@ -58,6 +62,8 @@ export default function Main(props) {
         dragOverHandler={dragOverHandler}
         dropHandler={dropHandler}
         sortUnits={sortUnits}
+        isClick={isClick}
+        setIsClick={setIsClick}
       />
     </main>
   );
