@@ -13,7 +13,7 @@ export default function App() {
   const endActiveMonthQuery = startDay.clone().add(42, 'days').format('X');
 
 
-    const [i, setI] = React.useState('');
+    const [i, setI] = React.useState(0);
 
   const enMonths = [...Array(12)].map((_, i) =>
     moment().month(i).format("MMMM")
@@ -55,6 +55,7 @@ export default function App() {
         switchDate={switchDate}
         handleAddPopupClick={handleAddPopupClick}
         meetings={meetings}
+        setMeetings={setMeetings}
       />
     </>
   );

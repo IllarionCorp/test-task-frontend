@@ -22,11 +22,11 @@ export default function Meeting(props) {
       <p
         className={`meeting__name${isClick ? " meeting__name_active" : ""}`}
         draggable={true}
-        onDragStart={(e) => props.dragStartHandler(e, props.meeting.id)}
+        onDragStart={(e) => props.dragStartHandler(e, props.meeting)}
         onDragLeave={(e) => props.dragEndHandler(e)}
         onDragEnd={(e) => props.dragEndHandler(e)}
         onDragOver={(e) => props.dragOverHandler(e)}
-        onDrop={(e) => props.dropHandler(e, props.meeting.id)}
+        onDrop={(e) => props.dropHandler(e, props.meeting)}
       >
         {props.meeting.name}
       </p>

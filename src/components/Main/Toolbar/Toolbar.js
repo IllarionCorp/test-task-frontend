@@ -24,13 +24,15 @@ export default function Toolbar(props) {
       </div>
       <div className="list-meetings">
         <h2 className="list-meetings__title">Список встреч</h2>
-        {props.meetings.map((meeting, id) => {
+        {props.meetings.sort(props.sortUnits).map((meeting, id) => {
+            meeting.id = id;
+
           return (
             <Meeting
               key={id}
               meeting={meeting}
               handleDeleteMeeting={props.handleDeleteMeeting}
-              id={id}
+              id={meeting.id}
               dragStartHandler={props.dragStartHandler}
               dragEndHandler={props.dragEndHandler}
               dragOverHandler={props.dragOverHandler}

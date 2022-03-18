@@ -4,11 +4,11 @@ import "./Main.css";
 import React from "react";
 
 export default function Main(props) {
-    const meetings = props.meetings
-    const [currentUnit, setCurrentUnit] = React.useState('');
+    const [meetings, setMeetings] = (props.meetings);
+    const [currentUnit, setCurrentUnit] = React.useState(null);
 
-  function dragStartHandler(e, id) {
-    setCurrentUnit(id)
+  function dragStartHandler(e, meeting) {
+    setCurrentUnit(meeting)
   }
 
   function dragEndHandler(e) {
@@ -20,24 +20,22 @@ export default function Main(props) {
     e.target.style.background = 'grey';
   }
 
-  function dropHandler(e, id) {
+  function dropHandler(e, meeting) {
     e.preventDefault();
     console.log(props.meetings)
-    meetings.map(c => {
-        console.log(c);
-        if (c.id === id) {
-            // props.setMeetings([...c, currentUnit])
-            
+    props.setMeetings(props.meetings.map((c) => {
+        console.log(c)
+        if (c.id === meeting.id) {
+          return {...c, id: currentUnit.id}
         }
 
-        if (c.id === currentUnit) {
-            // props.setMeetings([...c, id])
-            console.log(c.id)
+        if (c.id === currentUnit.id) {
+          return  {...c, id: meeting.id}
         }
-    })
+    }))
   }
   function sortUnits(a, b) {
-      if(a > b) {
+      if(a.id > b.id) {
           return 1;
       } else {
           return -1;

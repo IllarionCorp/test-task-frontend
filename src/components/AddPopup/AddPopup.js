@@ -5,7 +5,7 @@ import './AddPopup.css';
 export default function AddPopup(props) {
     const [name, setName] = React.useState('');
     const [fio, setFio] = React.useState(0);
-   
+    const [i, setI] = React.useState(props.i)
 
     function handleNameChange(e) {
         setName(e.target.value);
@@ -22,14 +22,16 @@ export default function AddPopup(props) {
         props.onAddMeeting({
             name: name,
             fio: fio,
-            id: props.i 
+            id: null,
+            time: null
         });
+        props.setI(i + 1)
+        props.isClose();
     }
 
     React.useEffect(() => {
         setName('')
         setFio('')
-        props.setI(props.i + 1)
     }, [props.isOpened])
 
     return (
