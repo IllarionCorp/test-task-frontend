@@ -5,7 +5,6 @@
 .list-meetings {
     width: inherit;
     border: 1px solid rgb(107, 104, 104);
-    min-height: 50%;
 }
 
 .list-meetings__title {
@@ -14,4 +13,8 @@
     padding-top: 10px;
     padding-bottom: 5px;
     border-bottom: 1px solid black;
+}
+
+.meetings {
+    min-height: 200px;
 }

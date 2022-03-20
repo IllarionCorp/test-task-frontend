@@ -5,6 +5,7 @@
     text-align: center;
     margin: 5px  10px; 
     background-color: greenyellow;
+    cursor: pointer;
 }
 
 .event__title {
@@ -15,4 +16,8 @@
 .event__time {
     margin: 0;
 
+}
+
+.event_active {
+    border: 2px solid black;
 }

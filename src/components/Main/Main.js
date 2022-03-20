@@ -4,46 +4,59 @@ import "./Main.css";
 import React from "react";
 
 export default function Main(props) {
-    const [isClick, setIsClick] = React.useState(false);
-    const [currentUnit, setCurrentUnit] = React.useState(null);
+  const [currentUnit, setCurrentUnit] = React.useState(null);
 
   function dragStartHandler(e, meeting) {
-    setCurrentUnit(meeting)
-    setIsClick(true)
+    setCurrentUnit(meeting);
   }
 
   function dragEndHandler(e) {
-    e.target.style.background = 'rgb(134, 236, 134)'
+    e.target.style.background = "rgb(134, 236, 134)";
   }
 
   function dragOverHandler(e) {
     e.preventDefault();
-    e.target.style.background = 'grey';
+    if (e.target.classList.contains('meeting__name')) {
+        e.target.style.background = "grey";
+    }
+    console.log(e.target);
   }
 
   function dropHandler(e, meeting) {
     e.preventDefault();
-    console.log(props.meetings)
-    props.setMeetings(props.meetings.map((c) => {
-        console.log(c)
+    console.log(props.meetings);
+    props.setMeetings(
+      props.meetings.map((c) => {
+        console.log(c);
         if (c.id === meeting.id) {
-            e.target.style.background = 'rgb(134, 236, 134)';
-          return {...c, id: currentUnit.id}
+          e.target.style.background = "rgb(134, 236, 134)";
+          return { ...c, id: currentUnit.id };
         }
 
         if (c.id === currentUnit.id) {
-            e.target.style.background = 'rgb(134, 236, 134)';
-            
-          return  {...c, id: meeting.id}
+          e.target.style.background = "rgb(134, 236, 134)";
+          return { ...c, id: meeting.id };
         }
-    }))
+      })
+    );
   }
+
+  function dropMeetingsHandler(e, data) {
+    if (e.target.classList.contains('calendar-cell')) {
+        props.setMeetings(props.meetings.map((c) => {
+            if (c.id === currentUnit.id) {
+               return { ...c, time: data }
+            }
+        }))
+    }
+  }
+
   function sortUnits(a, b) {
-      if(a.id > b.id) {
-          return 1;
-      } else {
-          return -1;
-      }
+    if (a.id > b.id) {
+      return 1;
+    } else {
+      return -1;
+    }
   }
 
   return (
@@ -52,6 +65,9 @@ export default function Main(props) {
         startDay={props.startDay}
         months={props.months}
         switchDate={props.switchDate}
+        meetings={props.meetings}
+        dropMeetingsHandler={dropMeetingsHandler}
+        dragOverHandler={dragOverHandler}
       />
       <Toolbar
         handleAddPopupClick={props.handleAddPopupClick}
@@ -62,9 +78,8 @@ export default function Main(props) {
         dragOverHandler={dragOverHandler}
         dropHandler={dropHandler}
         sortUnits={sortUnits}
-        isClick={isClick}
-        setIsClick={setIsClick}
-      />
+        onDrop={dropMeetingsHandler}
+         />
     </main>
   );
 }

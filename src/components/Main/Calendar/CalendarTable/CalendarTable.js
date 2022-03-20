@@ -12,20 +12,6 @@ export default function CalendarTable(props) {
   const isSelectedMonth = (daySelect) =>
     props.startDay.isSame(daySelect, "month");
 
-  const [eventsList, setEventsList] = React.useState([
-      {
-        name: 'arg',
-        fio: 'jkjjh',
-        id: 0,
-        time: 'kknkn' 
-    },
-    {
-        name: 'arg',
-        fio: 'jkjjh',
-        id: 1,
-        time: 'kknkoojokn' 
-    },
-  ]);
 
   return (
     <div className="calendar-table">
@@ -33,11 +19,12 @@ export default function CalendarTable(props) {
         return (
           <div key={id}>
             <CalendarCell
-              data={day.format("D")}
-              dayId={day.day()}
+              data={day}
               isSelectedMonth={() => isSelectedMonth(day)}
               board={id}
-              eventsList={eventsList}
+              meetings={props.meetings}
+              dropMeetingsHandler={props.dropMeetingsHandler}
+              dragOverHandler={props.dragOverHandler}
             />
           </div>
         );

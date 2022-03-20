@@ -5,7 +5,7 @@ import './AddPopup.css';
 export default function AddPopup(props) {
     const [name, setName] = React.useState('');
     const [fio, setFio] = React.useState(0);
-    const [i, setI] = React.useState(props.i)
+    const i = props.i;
 
     function handleNameChange(e) {
         setName(e.target.value);

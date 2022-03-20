@@ -38,6 +38,11 @@ export default function App() {
     setMeetings([meeting, ...meetings]);
   }
 
+ function handleDeleteMeeting(idList) {
+     idList.forEach(currentId => {
+        setMeetings(meetings.filter(meeting => meeting.id !== currentId))
+     });
+ }
 
   return (
     <>
@@ -56,6 +61,7 @@ export default function App() {
         handleAddPopupClick={handleAddPopupClick}
         meetings={meetings}
         setMeetings={setMeetings}
+        handleDeleteMeeting={handleDeleteMeeting}
       />
     </>
   );

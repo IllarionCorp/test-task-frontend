@@ -2,15 +2,18 @@ import React from "react";
 import "./Meeting.css";
 
 export default function Meeting(props) {
+  const [isClick, setIsClick] = React.useState(false)
 
-
-  function hendleMeetingClick() {
-    if (!props.isClick) {
-      props.setIsClick(true);
+  function handleMeetingClick() {
+    if (!isClick) {
+      setIsClick(true);
+      props.getCurrentId(props.meeting.id)
     } else {
-      props.setIsClick(false);
+      setIsClick(false);
     }
   }
+
+
 
 //   React.useEffect(() => {
 //     props.handleDeleteMeeting(props.id, isClick);
@@ -18,9 +21,9 @@ export default function Meeting(props) {
 
   console.log(props.id);
   return (
-    <div className="meeting" onClick={hendleMeetingClick}>
+    <div className="meeting" onMouseDown={handleMeetingClick}>
       <p
-        className={`meeting__name${props.isClick ? " meeting__name_active" : ""}`}
+        className={`meeting__name${isClick ? " meeting__name_active" : ""}`}
         draggable={true}
         onDragStart={(e) => props.dragStartHandler(e, props.meeting)}
         onDragLeave={(e) => props.dragEndHandler(e)}
@@ -31,7 +34,7 @@ export default function Meeting(props) {
         {props.meeting.name}
       </p>
       <p
-        className={`meeting__author${props.isClick ? " meeting__author_active" : ""}`}
+        className={`meeting__author${isClick ? " meeting__author_active" : ""}`}
       >
         {props.meeting.fio}
       </p>
