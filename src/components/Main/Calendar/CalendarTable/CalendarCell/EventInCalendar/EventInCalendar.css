@@ -15,7 +15,11 @@
 
 .event__time {
     margin: 0;
+    visibility: hidden;
+}
 
+.event__time_visible {
+    visibility: visible;
 }
 
 .event_active {

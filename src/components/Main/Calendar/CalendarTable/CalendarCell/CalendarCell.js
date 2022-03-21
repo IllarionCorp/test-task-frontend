@@ -4,11 +4,7 @@ import EventInCalendar from "./EventInCalendar/EventInCalendar";
 
 export default function CalendarCell(props) {
   const [isWeekend, setIsWeekend] = React.useState(false);
-  const [currentUnit, setCurrentUnit] = React.useState(null);
 
-  function dragStartHandler(e, event) {
-    setCurrentUnit(event);
-  }
 
   function dragEndHandler(e) {
     e.target.style.background = "greenyellow";
@@ -17,10 +13,6 @@ export default function CalendarCell(props) {
   function dragOverHandler(e) {
     e.preventDefault();
     e.target.style.background = "grey";
-  }
-
-  function dropHandler(e) {
-    e.preventDefault();
   }
 
   function weekendCheker() {
@@ -38,7 +30,10 @@ export default function CalendarCell(props) {
       className={`calendar-cell${
         !props.isSelectedMonth() ? " calendar-cell_blue" : ""
       }`}
-      onDrop={(e) => props.dropMeetingsHandler(e, props.data.format("X"))}
+      onDrop={(e) => {
+          props.dropMeetingsHandler(e, props.data.format("X"))
+          props.handleTimePopupOpen()
+        }}
       onDragOver={(e) => props.dragOverHandler(e)}
     >
       <h3
@@ -49,24 +44,21 @@ export default function CalendarCell(props) {
         {props.data.format("D")}
       </h3>
       <div className="events">
-        {props.meetings
-          .filter(
-            (meeting) =>
-              meeting.time >= props.data.format("X") &&
-              meeting.time <= props.data.clone().endOf("day").format("X")
-          )
+          {console.log(props.meetings)}
+        {props.meetings              
           .map((event, id) => {
-            return (
-              <EventInCalendar
-                key={id}
-                event={event}
-                eventId={id}
-                dragStartHandler={dragStartHandler}
-                dragEndHandler={dragEndHandler}
-                dragOverHandler={dragOverHandler}
-                dropHandler={dropHandler}
-              />
-            );
+              if (event.time >= props.data.format("X") &&
+              event.time <= props.data.clone().endOf("day").format("X")) {
+                return (
+                    <EventInCalendar
+                      key={id}
+                      event={event}
+                      dragEndHandler={dragEndHandler}
+                      dragOverHandler={dragOverHandler}
+                      />
+                      );
+              }
+            
           })}
       </div>
     </div>

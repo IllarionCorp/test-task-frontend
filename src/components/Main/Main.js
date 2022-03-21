@@ -42,12 +42,24 @@ export default function Main(props) {
   }
 
   function dropMeetingsHandler(e, data) {
+
     if (e.target.classList.contains('calendar-cell')) {
         props.setMeetings(props.meetings.map((c) => {
             if (c.id === currentUnit.id) {
+               props.setUnitForTimePopup(c)
                return { ...c, time: data }
             }
+            props.handleTimePopupOpen()
+            return c;
         }))
+    }
+    if (e.target.classList.contains('meetings')) {
+      props.setMeetings(props.meetings.map((c) => {
+        if (c.id === currentUnit.id) {
+          return {...c, time: NaN, start: null, end: null}
+        }
+        return c;
+      }))
     }
   }
 
@@ -68,6 +80,8 @@ export default function Main(props) {
         meetings={props.meetings}
         dropMeetingsHandler={dropMeetingsHandler}
         dragOverHandler={dragOverHandler}
+        handleTimePopupOpen={props.handleTimePopupOpen}
+        setUnitForTimePopup={props.setUnitForTimePopup}
       />
       <Toolbar
         handleAddPopupClick={props.handleAddPopupClick}

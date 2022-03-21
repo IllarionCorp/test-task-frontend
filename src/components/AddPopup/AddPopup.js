@@ -23,7 +23,9 @@ export default function AddPopup(props) {
             name: name,
             fio: fio,
             id: null,
-            time: null
+            time: NaN,
+            start: null,
+            end: null
         });
         props.setI(i + 1)
         props.isClose();

@@ -11,7 +11,9 @@ export default function Popup(props) {
                         <button id='submit-btn' type='submit' className='container-buttons__button'>
                             Сохранить
                         </button>
-                        <button id='reset-btn' type='reset'  className='container-buttons__button' onClick={props.isClose}>
+                        <button id='reset-btn' type='reset'  className='container-buttons__button' onClick={() => {
+                            props.isClose()
+                        }}>
                             Отмена
                         </button>  
                         </div> 

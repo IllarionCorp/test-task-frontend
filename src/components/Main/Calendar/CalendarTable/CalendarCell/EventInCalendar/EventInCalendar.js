@@ -18,14 +18,12 @@ export default function EventInCalendar(props) {
       className={`event${isClick ? " event_active" : ""}`}
       onMouseUp={handleMeetingClick}
       draggable
-      onDragStart={(e) => props.dragStartHandler(e, props.event)}
       onDragLeave={(e) => props.dragEndHandler(e)}
       onDragEnd={(e) => props.dragEndHandler(e)}
       onDragOver={(e) => props.dragOverHandler(e)}
-      onDrop={(e) => props.dropHandler(e, props.event)}
     >
       <h4 className="event__title">{props.event.name}</h4>
-      <p className="event__time">{props.event.time}</p>
+      <p className={`event__time${props.event.start !== null ? ' event__time_visible' : ''}`}>{`${props.event.start} - ${props.event.end}`}</p>
     </div>
   );
 }
