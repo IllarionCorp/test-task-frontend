@@ -1,9 +1,9 @@
-import './Header.css';
+import "./Header.css";
 
 export default function Header() {
-    return (
-        <header className='header'>
-            <h1 className='header__title'>Календарь</h1>
-        </header>
-    );
+  return (
+    <header className="header">
+      <h1 className="header__title">Календарь</h1>
+    </header>
+  );
 }

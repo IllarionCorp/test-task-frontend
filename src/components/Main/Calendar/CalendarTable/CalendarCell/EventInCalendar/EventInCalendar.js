@@ -23,7 +23,11 @@ export default function EventInCalendar(props) {
       onDragOver={(e) => props.dragOverHandler(e)}
     >
       <h4 className="event__title">{props.event.name}</h4>
-      <p className={`event__time${props.event.start !== null ? ' event__time_visible' : ''}`}>{`${props.event.start} - ${props.event.end}`}</p>
+      <p
+        className={`event__time${
+          props.event.start !== null ? " event__time_visible" : ""
+        }`}
+      >{`${props.event.start} - ${props.event.end}`}</p>
     </div>
   );
 }

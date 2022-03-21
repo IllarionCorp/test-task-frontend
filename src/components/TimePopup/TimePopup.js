@@ -14,12 +14,10 @@ export default function TimePopup(props) {
     setEnd(e.target.value);
   }
 
-  
-
   function handleSubmit(e) {
     e.preventDefault();
 
-    props.isClose()
+    props.isClose();
 
     props.setMeetings(
       props.meetings.map((c) => {
@@ -30,9 +28,8 @@ export default function TimePopup(props) {
     );
   }
 
-
   React.useEffect(() => {
-      console.log(props.event)
+    console.log(props.event);
     setStart("");
     setEnd("");
   }, [props.isOpened]);

@@ -18,7 +18,7 @@ export default function App() {
   );
   const [isAddPopupOpen, seIsAddPopupOpen] = React.useState(false);
   const [isTimePopupOpen, setIsTimePopupOpen] = React.useState(false);
-  const [unitForTimePopup, setUnitForTimePopup] = React.useState('')
+  const [unitForTimePopup, setUnitForTimePopup] = React.useState("");
   const [meetings, setMeetings] = React.useState([]);
 
   function switchDate(year, month) {

@@ -12,7 +12,6 @@ export default function CalendarTable(props) {
   const isSelectedMonth = (daySelect) =>
     props.startDay.isSame(daySelect, "month");
 
-
   return (
     <div className="calendar-table">
       {daysArr.map((day, id) => {

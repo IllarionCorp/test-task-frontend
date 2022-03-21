@@ -2,22 +2,20 @@ import React from "react";
 import "./Meeting.css";
 
 export default function Meeting(props) {
-  const [isClick, setIsClick] = React.useState(false)
+  const [isClick, setIsClick] = React.useState(false);
 
   function handleMeetingClick() {
     if (!isClick) {
       setIsClick(true);
-      props.getCurrentId(props.meeting.id)
+      props.getCurrentId(props.meeting.id);
     } else {
       setIsClick(false);
     }
   }
 
-
-
-//   React.useEffect(() => {
-//     props.handleDeleteMeeting(props.id, isClick);
-//   }, []);
+  //   React.useEffect(() => {
+  //     props.handleDeleteMeeting(props.id, isClick);
+  //   }, []);
 
   console.log(props.id);
   return (

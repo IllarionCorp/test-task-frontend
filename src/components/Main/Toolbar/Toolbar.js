@@ -29,7 +29,11 @@ export default function Toolbar(props) {
       </div>
       <div className="list-meetings">
         <h2 className="list-meetings__title">Список встреч</h2>
-        <div className="meetings" onDrop={(e) => props.onDrop(e)} onDragOver={(e) => props.dragOverHandler(e)}>
+        <div
+          className="meetings"
+          onDrop={(e) => props.onDrop(e)}
+          onDragOver={(e) => props.dragOverHandler(e)}
+        >
           {props.meetings.sort(props.sortUnits).map((meeting, id) => {
             meeting.id = id;
 

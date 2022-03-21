@@ -5,7 +5,6 @@ import EventInCalendar from "./EventInCalendar/EventInCalendar";
 export default function CalendarCell(props) {
   const [isWeekend, setIsWeekend] = React.useState(false);
 
-
   function dragEndHandler(e) {
     e.target.style.background = "greenyellow";
   }
@@ -31,9 +30,9 @@ export default function CalendarCell(props) {
         !props.isSelectedMonth() ? " calendar-cell_blue" : ""
       }`}
       onDrop={(e) => {
-          props.dropMeetingsHandler(e, props.data.format("X"))
-          props.handleTimePopupOpen()
-        }}
+        props.dropMeetingsHandler(e, props.data.format("X"));
+        props.handleTimePopupOpen();
+      }}
       onDragOver={(e) => props.dragOverHandler(e)}
     >
       <h3
@@ -44,22 +43,22 @@ export default function CalendarCell(props) {
         {props.data.format("D")}
       </h3>
       <div className="events">
-          {console.log(props.meetings)}
-        {props.meetings              
-          .map((event, id) => {
-              if (event.time >= props.data.format("X") &&
-              event.time <= props.data.clone().endOf("day").format("X")) {
-                return (
-                    <EventInCalendar
-                      key={id}
-                      event={event}
-                      dragEndHandler={dragEndHandler}
-                      dragOverHandler={dragOverHandler}
-                      />
-                      );
-              }
-            
-          })}
+        {console.log(props.meetings)}
+        {props.meetings.map((event, id) => {
+          if (
+            event.time >= props.data.format("X") &&
+            event.time <= props.data.clone().endOf("day").format("X")
+          ) {
+            return (
+              <EventInCalendar
+                key={id}
+                event={event}
+                dragEndHandler={dragEndHandler}
+                dragOverHandler={dragOverHandler}
+              />
+            );
+          }
+        })}
       </div>
     </div>
   );
