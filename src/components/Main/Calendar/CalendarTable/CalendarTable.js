@@ -12,6 +12,7 @@ export default function CalendarTable(props) {
   const isSelectedMonth = (daySelect) =>
     props.startDay.isSame(daySelect, "month");
 
+
   return (
     <div className="calendar-table">
       {daysArr.map((day, id) => {
@@ -24,10 +25,11 @@ export default function CalendarTable(props) {
               meetings={props.meetings}
               dropMeetingsHandler={props.dropMeetingsHandler}
               dragOverHandler={props.dragOverHandler}
-              handleTimePopupOpen={props.handleTimePopupOpen}
+              // handleTimePopupOpen={props.handleTimePopupOpen}
               setUnitForTimePopup={props.setUnitForTimePopup}
               dragStartHandler={props.dragStartHandler}
               dropHandler={props.dropHandler}
+              startDay={props.startDay}
             />
           </div>
         );

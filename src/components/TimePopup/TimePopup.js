@@ -17,30 +17,21 @@ export default function TimePopup(props) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    
-
-    
-
-    if (start.valueAsNumber < end.valueAsNumber) {
       props.setMeetings(
         props.meetings.map((c) => {
           if (c.id === props.event.id) {
             return { ...c, start: start, end: end };
           }
-          // return c;
         })
       );
       props.isClose();
-    } else {
-      alert("Укажите корректный промежуток"); 
-    }
   }
 
   React.useEffect(() => {
     console.log(props.event);
     setStart("");
     setEnd("");
-  }, [props.isOpened]); 
+  }, [props.isOpened]);
 
   return (
     <Popup
@@ -71,6 +62,7 @@ export default function TimePopup(props) {
           required
           value={end}
           onChange={handleDuration}
+          min={start}
         />
       </div>
     </Popup>

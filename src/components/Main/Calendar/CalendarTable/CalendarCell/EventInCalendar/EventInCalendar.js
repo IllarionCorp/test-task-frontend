@@ -7,7 +7,6 @@ export default function EventInCalendar(props) {
   function handleMeetingClick() {
     if (!isClick) {
       setIsClick(true);
-      props.getCurrentId(props.event.id);
     } else {
       setIsClick(false);
     }

@@ -16,6 +16,7 @@
 .event__time {
     margin: 0;
     visibility: hidden;
+    font-size: small;
 }
 
 .event__time_visible {

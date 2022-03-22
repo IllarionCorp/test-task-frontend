@@ -114,7 +114,7 @@ export default function Calendar(props) {
         meetings={props.meetings}
         dragOverHandler={props.dragOverHandler}
         dropMeetingsHandler={props.dropMeetingsHandler}
-        handleTimePopupOpen={props.handleTimePopupOpen}
+        // handleTimePopupOpen={props.handleTimePopupOpen}
         setUnitForTimePopup={props.setUnitForTimePopup}
         dragStartHandler={props.dragStartHandler}
         dropHandler={props.dropHandler}

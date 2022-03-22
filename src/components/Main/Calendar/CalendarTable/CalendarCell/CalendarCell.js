@@ -1,10 +1,11 @@
-import React from "react";
+import React, { memo } from "react";
+import moment from "moment";
 import "./CalendarCell.css";
 import EventInCalendar from "./EventInCalendar/EventInCalendar";
 
 export default function CalendarCell(props) {
   const [isWeekend, setIsWeekend] = React.useState(false);
-
+  console.log(moment().isSame(props.data))
   function dragEndHandler(e) {
     e.target.style.background = "greenyellow";
   }
@@ -28,10 +29,11 @@ export default function CalendarCell(props) {
     <div
       className={`calendar-cell${
         !props.isSelectedMonth() ? " calendar-cell_blue" : ""
+      }${
+        moment().isSame(props.data, 'day') ? ' calendar-cell_current' : ''
       }`}
       onDrop={(e) => {
-        props.dropMeetingsHandler(e, props.data.format("X"));
-        props.handleTimePopupOpen();
+        props.dropMeetingsHandler(e, props.data);
       }}
       onDragOver={(e) => props.dragOverHandler(e)}
     >

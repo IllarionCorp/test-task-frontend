@@ -36,3 +36,7 @@
     resize: horizontal;
     position: absolute;
 }
+
+.calendar-cell_current {
+    border: 1px solid red;
+}

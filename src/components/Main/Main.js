@@ -1,4 +1,5 @@
 import Calendar from "./Calendar/Calendar.js";
+import moment from "moment";
 import Toolbar from "./Toolbar/Toolbar.js";
 import "./Main.css";
 import React from "react";
@@ -46,11 +47,13 @@ export default function Main(props) {
     if (e.target.classList.contains("calendar-cell")) {
       props.setMeetings(
         props.meetings.map((c) => {
-          if (c.id === currentUnit.id) {
+          if (c.id === currentUnit.id && moment().isSameOrBefore(data, 'day')) {
             props.setUnitForTimePopup(c);
-            return { ...c, time: data };
+            props.handleTimePopupOpen();
+            return { ...c, time: data.format('X') };
+          } else {
+            alert('Вы выбрали прошедший день')
           }
-          props.handleTimePopupOpen();
           return c;
         })
       );
@@ -86,7 +89,7 @@ export default function Main(props) {
         dropMeetingsHandler={dropMeetingsHandler}
         dragOverHandler={dragOverHandler}
         dropHandler={dropHandler}
-        handleTimePopupOpen={props.handleTimePopupOpen}
+        // handleTimePopupOpen={props.handleTimePopupOpen}
         setUnitForTimePopup={props.setUnitForTimePopup}
       />
       <Toolbar
