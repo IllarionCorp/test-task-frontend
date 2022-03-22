@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 import moment from "moment";
 import "./CalendarCell.css";
 import EventInCalendar from "./EventInCalendar/EventInCalendar";
