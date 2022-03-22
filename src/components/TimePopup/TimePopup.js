@@ -32,7 +32,7 @@ export default function TimePopup(props) {
       );
       props.isClose();
     } else {
-      alert("Укажите корректный промежуток");
+      alert("Укажите корректный промежуток"); 
     }
   }
 
