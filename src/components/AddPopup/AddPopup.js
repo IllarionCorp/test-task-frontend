@@ -5,6 +5,7 @@ import "./AddPopup.css";
 export default function AddPopup(props) {
   const [name, setName] = React.useState("");
   const [fio, setFio] = React.useState(0);
+  const [description, setDescription] = React.useState('')
   const i = props.i;
 
   function handleNameChange(e) {
@@ -13,6 +14,10 @@ export default function AddPopup(props) {
 
   function handleFioChange(e) {
     setFio(e.target.value);
+  }
+
+  function handleDescriptionChange(e) {
+      setDescription(e.target.value)
   }
 
   function hadleSubmit(e) {
@@ -25,6 +30,7 @@ export default function AddPopup(props) {
       time: NaN,
       start: null,
       end: null,
+      description: description
     });
     props.setI(i + 1);
     props.isClose();
@@ -33,6 +39,7 @@ export default function AddPopup(props) {
   React.useEffect(() => {
     setName("");
     setFio("");
+    setDescription("");
   }, [props.isOpened]);
 
   return (
@@ -72,6 +79,8 @@ export default function AddPopup(props) {
           id="description-input"
           className="container-form__input"
           name="description"
+          value={description}
+          onChange={handleDescriptionChange}
         />
       </div>
     </Popup>

@@ -17,15 +17,23 @@ export default function TimePopup(props) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    props.isClose();
+    
 
-    props.setMeetings(
-      props.meetings.map((c) => {
-        if (c.id === props.event.id) {
-          return { ...c, start: start, end: end };
-        }
-      })
-    );
+    
+
+    if (start.valueAsNumber < end.valueAsNumber) {
+      props.setMeetings(
+        props.meetings.map((c) => {
+          if (c.id === props.event.id) {
+            return { ...c, start: start, end: end };
+          }
+          // return c;
+        })
+      );
+      props.isClose();
+    } else {
+      alert("Укажите корректный промежуток");
+    }
   }
 
   React.useEffect(() => {
@@ -45,7 +53,7 @@ export default function TimePopup(props) {
         <label className="container-form__label">Время начал</label>
         <input
           id="time-start-input"
-          type="text"
+          type="time"
           className="container-form__input"
           name="name"
           required
@@ -57,7 +65,7 @@ export default function TimePopup(props) {
         <label className="container-form__label">Время конца</label>
         <input
           id="duration-input"
-          type="text"
+          type="time"
           className="container-form__input"
           name="author"
           required

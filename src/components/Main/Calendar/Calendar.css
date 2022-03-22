@@ -12,11 +12,19 @@
     padding-bottom: 20px;
 }
 
+.calendar__month-active:hover {
+    cursor: pointer;
+}
+
 .calendar__year-active {
     margin: 0;
     padding-top: 20px;
     padding-bottom: 20px;
     margin-left: 10px;
+}
+
+.calendar__year-active:hover {
+    cursor: pointer;
 }
 
 .date-menu {

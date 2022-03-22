@@ -74,7 +74,7 @@ export default function Calendar(props) {
                 <div key={id}>
                   <a
                     id="month"
-                    href="/"
+                    href="#"
                     className="date-menu__list"
                     onClick={handleSwitchDate}
                   >
@@ -97,7 +97,7 @@ export default function Calendar(props) {
                 <div key={id}>
                   <a
                     id="year"
-                    href="/"
+                    href="#"
                     className="date-menu__list"
                     onClick={handleSwitchDate}
                   >
@@ -116,6 +116,8 @@ export default function Calendar(props) {
         dropMeetingsHandler={props.dropMeetingsHandler}
         handleTimePopupOpen={props.handleTimePopupOpen}
         setUnitForTimePopup={props.setUnitForTimePopup}
+        dragStartHandler={props.dragStartHandler}
+        dropHandler={props.dropHandler}
       />
     </section>
   );

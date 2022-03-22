@@ -26,6 +26,8 @@ export default function CalendarTable(props) {
               dragOverHandler={props.dragOverHandler}
               handleTimePopupOpen={props.handleTimePopupOpen}
               setUnitForTimePopup={props.setUnitForTimePopup}
+              dragStartHandler={props.dragStartHandler}
+              dropHandler={props.dropHandler}
             />
           </div>
         );

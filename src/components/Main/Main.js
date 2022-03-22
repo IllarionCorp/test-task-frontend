@@ -37,6 +37,7 @@ export default function Main(props) {
           e.target.style.background = "rgb(134, 236, 134)";
           return { ...c, id: meeting.id };
         }
+        // return c;
       })
     );
   }
@@ -81,8 +82,10 @@ export default function Main(props) {
         months={props.months}
         switchDate={props.switchDate}
         meetings={props.meetings}
+        dragStartHandler={dragStartHandler}
         dropMeetingsHandler={dropMeetingsHandler}
         dragOverHandler={dragOverHandler}
+        dropHandler={dropHandler}
         handleTimePopupOpen={props.handleTimePopupOpen}
         setUnitForTimePopup={props.setUnitForTimePopup}
       />

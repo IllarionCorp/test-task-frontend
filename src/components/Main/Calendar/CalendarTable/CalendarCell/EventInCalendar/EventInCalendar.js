@@ -7,7 +7,7 @@ export default function EventInCalendar(props) {
   function handleMeetingClick() {
     if (!isClick) {
       setIsClick(true);
-      props.getCurrentId(props.meeting.id);
+      props.getCurrentId(props.event.id);
     } else {
       setIsClick(false);
     }
@@ -18,9 +18,11 @@ export default function EventInCalendar(props) {
       className={`event${isClick ? " event_active" : ""}`}
       onMouseUp={handleMeetingClick}
       draggable
+      onDragStart={(e) => props.dragStartHandler(e, props.event)}
       onDragLeave={(e) => props.dragEndHandler(e)}
       onDragEnd={(e) => props.dragEndHandler(e)}
       onDragOver={(e) => props.dragOverHandler(e)}
+      onDrop={(e) => props.dropHandler(e, props.event)}
     >
       <h4 className="event__title">{props.event.name}</h4>
       <p

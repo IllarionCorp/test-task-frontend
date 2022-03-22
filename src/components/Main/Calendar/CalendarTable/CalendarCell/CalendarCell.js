@@ -55,6 +55,8 @@ export default function CalendarCell(props) {
                 event={event}
                 dragEndHandler={dragEndHandler}
                 dragOverHandler={dragOverHandler}
+                dragStartHandler={props.dragStartHandler}
+                dropHandler={props.dropHandler}
               />
             );
           }
