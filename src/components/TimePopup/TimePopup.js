@@ -40,8 +40,8 @@ export default function TimePopup(props) {
       isClose={props.isClose}
       onSubmit={handleSubmit}
     >
-      <div className="inputs">
-        <label className="container-form__label">Время начал</label>
+      <div className="inputs inputs_time-popup">
+        <label className="container-form__label">Время начала</label>
         <input
           id="time-start-input"
           type="time"
@@ -52,7 +52,7 @@ export default function TimePopup(props) {
           onChange={handleTimeStart}
         />
       </div>
-      <div className="inputs">
+      <div className="inputs inputs_time-popup">
         <label className="container-form__label">Время конца</label>
         <input
           id="duration-input"

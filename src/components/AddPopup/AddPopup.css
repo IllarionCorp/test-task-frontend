@@ -5,12 +5,12 @@
 }
 
 .container-form__input {
-    width: 100%;
+    width: 50%;
     margin-left: 40px;
 }
 
 .container-form__label {
-    width: 100px;
+    min-width: 100px;
 }
 
 #description-input {
