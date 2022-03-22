@@ -40,7 +40,7 @@ export default function TimePopup(props) {
     console.log(props.event);
     setStart("");
     setEnd("");
-  }, [props.isOpened]);
+  }, [props.isOpened]); 
 
   return (
     <Popup
