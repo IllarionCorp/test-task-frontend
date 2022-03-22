@@ -13,10 +13,10 @@
 Сервер запустится по адресу localhost:3000.
 
 ## Системные требования
-moment v2.29.1
-react v17.0.2
-react-dnd v15.1.1
-react-dom v17.0.2
-react-router-dom v6.2.2
-react-scripts v5.0.0
-web-vitals v2.1.4
+moment v2.29.1  
+react v17.0.2  
+react-dnd v15.1.1  
+react-dom v17.0.2  
+react-router-dom v6.2.2  
+react-scripts v5.0.0  
+web-vitals v2.1.4  
