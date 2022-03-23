@@ -1,0 +1,15 @@
+#time-start-input {
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#duration-input {
+    width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.inputs_time-popup {
+    justify-content: start;
+}

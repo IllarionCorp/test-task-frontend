@@ -1,0 +1,21 @@
+.toolbar {
+        justify-self: stretch;
+}
+
+.list-meetings {
+    width: inherit;
+    border: 1px solid rgb(107, 104, 104);
+}
+
+.list-meetings__title {
+    margin: 0;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid black;
+}
+
+.meetings {
+    padding-top: 50px;
+    min-height: 200px;
+}
