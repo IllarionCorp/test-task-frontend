@@ -22,6 +22,7 @@ export default function TimePopup(props) {
           if (c.id === props.event.id) {
             return { ...c, start: start, end: end };
           }
+          return c;
         })
       );
       props.isClose();
