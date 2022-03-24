@@ -44,21 +44,29 @@ export default function Main(props) {
   }
 
   function dropMeetingsHandler(e, data) {
-    if (e.target.classList.contains("calendar-cell")) {
+    if (
+      e.target.classList.contains("calendar-cell") ||
+      e.target.classList.contains("event") ||
+      e.target.classList.contains("event__title") ||
+      e.target.classList.contains("event__time")
+    ) {
       props.setMeetings(
         props.meetings.map((c) => {
-          if (c.id === currentUnit.id && moment().isSameOrBefore(data, 'day')) {
+          if (c.id === currentUnit.id && moment().isSameOrBefore(data, "day")) {
             props.setUnitForTimePopup(c);
             props.handleTimePopupOpen();
-            return { ...c, time: data.format('X') };
-          } else if(c.id === currentUnit.id) {
-            alert('Вы выбрали прошедший день')
+            return { ...c, time: data.format("X") };
+          } else if (c.id === currentUnit.id) {
+            alert("Вы выбрали прошедший день");
           }
           return c;
         })
       );
     }
-    if (e.target.classList.contains("meetings") || e.target.classList.contains('meeting__name')) {
+    if (
+      e.target.classList.contains("meetings") ||
+      e.target.classList.contains("meeting__name")
+    ) {
       props.setMeetings(
         props.meetings.map((c) => {
           if (c.id === currentUnit.id) {
